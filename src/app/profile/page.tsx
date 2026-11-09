@@ -1,0 +1,4 @@
+import {Shell} from '@/components/shell';import {createClient} from '@/lib/supabase/server';
+export default async function Profile(){const db=await createClient();const {data:{user}}=await db.auth.getUser();if(!user)return <Shell><h1 className="text-2xl font-bold">Profilo</h1><p>Effettua l'accesso per vedere i tuoi progressi.</p></Shell>;
+ const [{count:discovered},{count:medals}]=await Promise.all([db.from('user_discoveries').select('*',{count:'exact',head:true}),db.from('user_medals').select('*',{count:'exact',head:true})]);
+ return <Shell><h1 className="text-3xl font-bold">Profilo</h1><p className="mt-2 text-gray-500">{user.email}</p><div className="mt-6 grid grid-cols-2 gap-4"><div className="rounded-xl bg-gray-100 p-5">Piatti scoperti<strong className="block text-3xl">{discovered??0}</strong></div><div className="rounded-xl bg-gray-100 p-5">Medaglie<strong className="block text-3xl">{medals??0}</strong></div></div></Shell>}

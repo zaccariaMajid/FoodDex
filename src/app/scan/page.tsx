@@ -1,0 +1,2 @@
+import {Shell} from '@/components/shell';
+export default function Scan(){return <Shell><h1 className="text-3xl font-bold">Scansiona un piatto</h1><p className="mt-3 text-gray-600">La scansione AI verrà integrata dopo la validazione del database e del catalogo. Nessuno sblocco dimostrativo viene registrato.</p><div className="mt-8 rounded-2xl bg-gray-100 p-12 text-center">📷<p className="mt-3">Fotocamera: in preparazione</p></div></Shell>}
